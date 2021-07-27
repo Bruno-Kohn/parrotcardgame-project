@@ -1,0 +1,40 @@
+body {
+  background-color: #eef9bf;
+}
+
+.game-name {
+  text-align: center;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 56px;
+  line-height: 66px;
+  letter-spacing: -0.004em;
+  color: #75b79e;
+  margin: 5vh 0;
+}
+
+.container {
+  width: 50vw;
+  height: 70vh;
+  background-color: pink;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  background: #a7e9af;
+  border: 1px solid #99cea8;
+  border-radius: 5px;
+  width: 117px;
+  height: 146px;
+  margin: 20px;
+}
+
+.card img {
+  width: 80%;
+  margin: 25px 10px;
+}
