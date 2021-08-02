@@ -12,6 +12,7 @@ body {
   letter-spacing: -0.004em;
   color: #75b79e;
   margin: 5vh 0;
+  margin-top: 80px;
 }
 
 .container {
@@ -24,6 +25,28 @@ body {
   align-items: center;
 }
 
+.top {
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px;
+}
+
+.timer {
+  font-family: Roboto;
+  font-weight: bold;
+  font-size: 14px;
+  width: 160px;
+  height: 40px;
+  background-color: #99cea8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+
 .cards {
   background: #a7e9af;
   border: 1px solid #99cea8;
@@ -31,6 +54,7 @@ body {
   width: 117px;
   height: 146px;
   margin: 40px;
+  cursor: pointer;
 }
 
 .cards img {

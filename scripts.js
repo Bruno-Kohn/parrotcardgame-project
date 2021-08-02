@@ -3,6 +3,10 @@ let deck = [];
 let firstCard = null;
 let clicks = 0;
 let pairs = 0;
+let seconds = 0;
+let timer;
+let cardsDistribution;
+let card;
 const gifs = [
   "bobrossparrot.gif",
   "explodyparrot.gif",
@@ -19,9 +23,8 @@ function memoryGame() {
   while (numberOfCards % 2 !== 0 || numberOfCards >= 15 || numberOfCards <= 3) {
     numberOfCards = parseInt(prompt("Com quantas cartas deseja jogar?"));
   }
-  console.log(numberOfCards);
   for (let i = 0; i < numberOfCards / 2; i++) {
-    const card = `<div class="cards card1" id="checkcard${i}" onclick="toSelectCard(this)">
+    card = `<div class="cards" onclick="toSelectCard(this)">
      <img class="front" src="Images/front.png">
      <img class="back hide" src="Images/${gifs[i]}">
      </div>`;
@@ -36,7 +39,7 @@ function comparador() {
   return Math.random() - 0.5;
 }
 
-const cardsDistribution = document.querySelector(".container");
+cardsDistribution = document.querySelector(".container");
 cardsDistribution.innerHTML = "";
 
 for (let i = 0; i < numberOfCards; i++) {
@@ -53,24 +56,33 @@ function toSelectCard(card) {
 
 function toCompare(card) {
   if (firstCard === null) {
-    console.log("essa foi a primeira carta");
     firstCard = card;
     firstCard.setAttribute("onclick", "");
     clicks++;
+    if (clicks === 1) {
+      countdown();
+    }
   } else if (firstCard.innerHTML === card.innerHTML) {
-    console.log("Cartas iguais");
     card.setAttribute("onclick", "");
     firstCard.setAttribute("onclick", "");
     firstCard = null;
     clicks++;
     pairs = pairs + 2;
-    console.log(pairs);
     if (pairs === numberOfCards) {
-      alert(`Você ganhou em ${clicks / 2} jogadas!`);
-      return;
+      clearInterval(timer);
+      alert(`Você ganhou em ${clicks / 2} jogadas e ${seconds} segundos!`);
+      /* const answer = prompt("Deseja jogar novamente?");
+      if (answer === "Sim" || answer === "sim") {
+        alert("Será iniciado um próximo jogo");
+        cardsDistribution.innerHTML = "";
+        numberOfCards = null;
+        deck = [];
+        memoryGame();
+      } else {
+        return;
+      } */
     }
   } else {
-    console.log("Cartas Diferentes");
     differentCards(card, firstCard);
     firstCard = null;
     clicks++;
@@ -92,4 +104,14 @@ function differentCards(card, firstCard) {
     backFirstCard.classList.add("hide");
     firstCard.setAttribute("onclick", "toSelectCard(this)");
   }
+}
+
+function countdown() {
+  timer = setInterval(function () {
+    seconds++;
+    document.querySelector(".timer").innerHTML = `Seu tempo: ${seconds}`;
+    if (pairs === numberOfCards) {
+      clearInterval(timer);
+    }
+  }, 1000);
 }
